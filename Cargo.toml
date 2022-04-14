@@ -1,0 +1,32 @@
+[package]
+name = "iot-anlytcs"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "iot-anlytcs"
+path = "src/back/main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+actix-files = "0.6.0"
+actix-service = "2.0.2"
+actix-web = "4.0.1"
+chrono = { version = "0.4.19", features = ["clock", "std", "serde"] }
+concat_strs = "1.0.1"
+config = { version = "0.12", features = ["json", "yaml", "preserve_order"] }
+diesel = { version = "1.4.8", features = [
+    "postgres",
+    "chrono",
+    "uuid",
+    "serde_json",
+    "r2d2",
+] }
+flexi_logger = "0.22.3"
+futures = "0.3.21"
+log = "0.4.14"
+r2d2 = "0.8.9"
+serde = "1.0.136"
+serde_json = "1.0.79"
+tokio = { version = "1.17.0", features = ["macros", "rt-multi-thread"] }
+uuid = { version = "0.8.2", features = ["serde", "v4"] }

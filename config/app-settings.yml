@@ -1,0 +1,6 @@
+dbconnection:
+   address: localhost
+   port: 5432
+   database: iotanlytcs
+   username: iotanlytcs
+   password: iotanlytcs
