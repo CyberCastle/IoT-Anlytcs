@@ -1,0 +1,5 @@
+{
+   "rust-analyzer.diagnostics.disabled": [
+      "unresolved-macro-call" // Workaround: https://github.com/rust-analyzer/rust-analyzer/issues/6835, more info: https://github.com/rust-analyzer/rust-analyzer/issues/9606
+   ]
+}
