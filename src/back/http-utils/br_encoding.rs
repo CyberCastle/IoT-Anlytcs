@@ -24,7 +24,9 @@ use std::{path::Path, pin::Pin};
  * comprimidos, usando el algoritmo brotli
  */
 
-pub const DEFAULT_EXTENSIONS_COMPRESSED: [&str; 5] = ["js", "css", "svg", "woff", "woff2"];
+pub const DEFAULT_EXTENSIONS_COMPRESSED: [&str; 9] = [
+    "js", "css", "html", "svg", "eot", "woff2", "woff", "ttf", "/",
+];
 pub struct BrotliEncodingHeader;
 
 impl<S, B> Transform<S, ServiceRequest> for BrotliEncodingHeader
@@ -69,9 +71,9 @@ where
         // A partir de la referencia, obtenemos la ruta de la petición HTTP,
         // que hace referencia a un archivo estático a servir.
         let file_extension = Path::new(req_ref.path())
-            .extension() // Obtenemos la extensión del archivo (js, css, html, etc)
+            .extension() // Obtenemos la extensión del archivo (js, css, html, etc.)
             .and_then(OsStr::to_str) // La extensión se obtiene como string
-            .unwrap_or(""); // Si no viene la extensión, devolvemos un string vacío
+            .unwrap_or("/"); // Si no viene la extensión, devolvemos un string vacío
         let extension_finded = DEFAULT_EXTENSIONS_COMPRESSED.contains(&file_extension);
 
         let fut = self.service.call(req);
