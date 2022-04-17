@@ -76,7 +76,14 @@
                      "outputHashing": "all",
                      "extractLicenses": true,
                      "buildOptimizer": true,
-                     "optimization": true,
+                     "optimization": {
+                        "scripts": true,
+                        "styles": {
+                           "minify": true,
+                           "inlineCritical": false
+                        },
+                        "fonts": true
+                     },
                      "sourceMap": false,
                      "vendorChunk": false,
                      "aot": true
