@@ -1,0 +1,130 @@
+{
+   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+   "cli": {
+      "analytics": "prompt",
+      "cache": {
+         "enabled": true,
+         "path": "./target/angular/",
+         "environment": "all"
+      },
+      "packageManager": "npm"
+   },
+   "version": 1,
+   "newProjectRoot": "projects",
+   "projects": {
+      "IoTAnlytcs": {
+         "projectType": "application",
+         "schematics": {
+            "@schematics/angular:component": {
+               "style": "scss"
+            },
+            "@schematics/angular:application": {
+               "strict": true
+            }
+         },
+         "root": "",
+         "sourceRoot": "src",
+         "prefix": "iota",
+         "architect": {
+            "build": {
+               "builder": "@angular-builders/custom-webpack:browser",
+               "options": {
+                  "outputPath": "dist",
+                  "index": "src/front/index.html",
+                  "main": "src/front/main.ts",
+                  "polyfills": "src/front/polyfills.ts",
+                  "tsConfig": "tsconfig.app.json",
+                  "inlineStyleLanguage": "scss",
+                  "assets": [
+                     {
+                        "glob": "favicon.ico",
+                        "input": "src/front",
+                        "output": "/"
+                     },
+                     {
+                        "glob": "**",
+                        "input": "src/front/assets",
+                        "output": "/assets"
+                     }
+                  ],
+                  "styles": ["src/front/styles.scss"],
+                  "scripts": [],
+                  "customWebpackConfig": {
+                     "path": "./webpack.config.ts"
+                  }
+               },
+               "configurations": {
+                  "production": {
+                     "budgets": [
+                        {
+                           "type": "initial",
+                           "maximumWarning": "500kb",
+                           "maximumError": "1mb"
+                        },
+                        {
+                           "type": "anyComponentStyle",
+                           "maximumWarning": "2kb",
+                           "maximumError": "4kb"
+                        }
+                     ],
+                     "fileReplacements": [
+                        {
+                           "replace": "src/front/environments/environment.ts",
+                           "with": "src/front/environments/environment.prod.ts"
+                        }
+                     ],
+                     "outputHashing": "all",
+                     "extractLicenses": true,
+                     "buildOptimizer": true,
+                     "optimization": true,
+                     "sourceMap": false,
+                     "vendorChunk": false,
+                     "aot": true
+                  },
+                  "development": {
+                     "buildOptimizer": false,
+                     "optimization": false,
+                     "vendorChunk": true,
+                     "extractLicenses": false,
+                     "sourceMap": true,
+                     "namedChunks": true
+                  }
+               },
+               "defaultConfiguration": "production"
+            },
+            "serve": {
+               "builder": "@angular-devkit/build-angular:dev-server",
+               "configurations": {
+                  "production": {
+                     "browserTarget": "IoTAnlytcs:build:production"
+                  },
+                  "development": {
+                     "browserTarget": "IoTAnlytcs:build:development"
+                  }
+               },
+               "defaultConfiguration": "development"
+            },
+            "extract-i18n": {
+               "builder": "@angular-devkit/build-angular:extract-i18n",
+               "options": {
+                  "browserTarget": "IoTAnlytcs:build"
+               }
+            },
+            "test": {
+               "builder": "@angular-devkit/build-angular:karma",
+               "options": {
+                  "main": "src/front/test.ts",
+                  "polyfills": "src/front/polyfills.ts",
+                  "tsConfig": "tsconfig.spec.json",
+                  "karmaConfig": "karma.conf.js",
+                  "inlineStyleLanguage": "scss",
+                  "assets": ["src/front/favicon.ico", "src/front/assets"],
+                  "styles": ["src/front/styles.scss"],
+                  "scripts": []
+               }
+            }
+         }
+      }
+   },
+   "defaultProject": "IoTAnlytcs"
+}
