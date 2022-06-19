@@ -8,6 +8,12 @@
 
 // https://github.com/balliegojr/todo-api
 
+// GraphQL: https://github.com/graphql-rust/juniper
+
+//Para simular API https://fakeql.com/
+
+//Para generar código graphql: https://www.graphql-code-generator.com/plugins
+
 #[macro_use]
 extern crate diesel;
 
